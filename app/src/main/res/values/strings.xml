@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FireBaseStorage</string>
+    <string name="paraBorrrar">Para borrar Firebase Storage</string>
+</resources>
