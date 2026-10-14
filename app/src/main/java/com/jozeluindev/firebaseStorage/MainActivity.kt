@@ -2,11 +2,23 @@ package com.jozeluindev.firebaseStorage
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.jozeluindev.firebaseStorage.databinding.ActivityMainBinding
+import com.jozeluindev.firebaseStorage.ui.xml.upload.UploadXmlActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.btnNavigateToXml.setOnClickListener {
+            startActivity(UploadXmlActivity.create(this))
+        }
+        binding.btnNavigateCompose.setOnClickListener {}
 
     }
 }

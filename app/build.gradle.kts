@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "com.jozeluindev.firebaseStorage"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.jozeluindev.firebaseStorage"
@@ -45,6 +45,8 @@ dependencies {
     // 🌟 Firebase
     implementation(platform(libs.google.firebase.bom))
     implementation(libs.google.firebase.auth.ktx)
+    implementation(libs.firebase.storage)
+
 
     // 🌟 Login & Terceros (Así traduce Gradle los alias largos con puntos en el código)
     implementation(libs.com.google.android.gms.play.services.auth)

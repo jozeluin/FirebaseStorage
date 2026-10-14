@@ -6,7 +6,7 @@ hilt = "2.45"
 google-services = "4.3.15"
 
 # Versiones de Librerías
-activity-ktx = "1.7.2"
+activity-ktx = "1.8.0"
 appcompat = "1.6.1"
 constraintlayout = "2.1.4"
 core-ktx = "1.9.0"
@@ -31,11 +31,13 @@ com-google-android-material = { group = "com.google.android.material", name = "m
 # Login & Terceros
 com-facebook-android-facebook-login = { group = "com.facebook.android", name = "facebook-login", version.ref = "facebook-login" }
 com-google-android-gms-play-services-auth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "play-services-auth" }
+
 io-github-chaosleung-pinview = { group = "io.github.chaosleung", name = "pinview", version.ref = "pinview" }
 
 # Firebase
 google-firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
 google-firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx" }
+firebase-storage = { module = "com.google.firebase:firebase-storage" }
 
 # Dagger Hilt
 dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
