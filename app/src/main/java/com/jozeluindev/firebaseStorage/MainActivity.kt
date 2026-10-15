@@ -3,6 +3,7 @@ package com.jozeluindev.firebaseStorage
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.jozeluindev.firebaseStorage.databinding.ActivityMainBinding
+import com.jozeluindev.firebaseStorage.ui.compose.upload.UploadComposeActivity
 import com.jozeluindev.firebaseStorage.ui.xml.upload.UploadXmlActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,7 +19,13 @@ class MainActivity : AppCompatActivity() {
         binding.btnNavigateToXml.setOnClickListener {
             startActivity(UploadXmlActivity.create(this))
         }
-        binding.btnNavigateCompose.setOnClickListener {}
+        binding.btnNavigateCompose.setOnClickListener {
+            startActivity(
+                UploadComposeActivity.create(
+                    this
+                )
+            )
+        }
 
     }
 }

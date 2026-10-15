@@ -38,6 +38,10 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        compose=true
+    }
+    composeOptions{
+        kotlinCompilerExtensionVersion="1.4.0"
     }
 }
 
@@ -68,4 +72,15 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.test.espresso.core)
+
+    //Compose
+    implementation (platform(libs.androidx.compose.bom))
+    implementation (libs.androidx.compose.ui)
+    implementation (libs.androidx.compose.material)
+    implementation (libs.androidx.compose.runtime)
+    implementation (libs.androidx.compose.ui.graphics)
+    implementation (libs.androidx.compose.ui.tooling.preview)
+    implementation (libs.androidx.activity.compose)
+    implementation(libs.coil.compose)
+
 }
