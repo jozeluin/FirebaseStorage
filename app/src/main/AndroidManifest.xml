@@ -26,6 +26,10 @@
             android:name=".ui.xml.upload.UploadXmlActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.compose.upload.UploadComposeActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
