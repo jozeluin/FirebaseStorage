@@ -50,7 +50,7 @@ io-github-chaosleung-pinview = { group = "io.github.chaosleung", name = "pinview
 # Firebase
 google-firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
 google-firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx" }
-firebase-storage = { module = "com.google.firebase:firebase-storage" }
+firebase-storage = { module = "com.google.firebase:firebase-storage-ktx" }
 
 # Dagger Hilt
 dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }

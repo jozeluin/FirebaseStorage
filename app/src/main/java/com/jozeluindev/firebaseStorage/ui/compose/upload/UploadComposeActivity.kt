@@ -14,6 +14,8 @@ import com.jozeluindev.firebaseStorage.databinding.ActivityUploadComposeBinding
 class UploadComposeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityUploadComposeBinding
+
+
     companion object {
         fun create(context: Context): Intent = Intent(context, UploadComposeActivity::class.java)
     }
