@@ -5,21 +5,22 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.contract.ActivityResultContracts.*
+import androidx.activity.result.contract.ActivityResultContracts.GetContent
+import androidx.activity.result.contract.ActivityResultContracts.TakePicture
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.google.android.gms.common.internal.Objects
 import com.jozeluindev.firebaseStorage.R
 import com.jozeluindev.firebaseStorage.databinding.ActivityUploadXmlBinding
+import com.jozeluindev.firebaseStorage.databinding.DialogImageSelectorBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.nio.file.Files.createFile
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
 
 @AndroidEntryPoint
 class UploadXmlActivity : AppCompatActivity() {
@@ -34,10 +35,17 @@ class UploadXmlActivity : AppCompatActivity() {
     private lateinit var uri: Uri
     private var intentCameraLauncher = registerForActivityResult(TakePicture()) {
         if (it && uri.path?.isNotEmpty() == true) //comprobar la uri
-            {
+        {
             uploadViewModel.uploadBasicImage(uri)
         }
 
+
+    }
+
+    private var intentGalleryLauncher = registerForActivityResult(GetContent()) { uri ->
+        uri?.let{
+                uploadViewModel.uploadBasicImage(it)
+        }
 
     }
 
@@ -59,7 +67,31 @@ class UploadXmlActivity : AppCompatActivity() {
     }
 
     private fun initListeners() {
-        binding.fabImage.setOnClickListener { takePhoto() }
+        binding.fabImage.setOnClickListener { showImageDialog() }
+    }
+
+    fun showImageDialog() {
+        val dialogBinding=DialogImageSelectorBinding.inflate(layoutInflater)
+        val dialog= AlertDialog.Builder(this).apply {
+
+            setView(dialogBinding.root)
+
+        }.create()
+        dialogBinding.btnTakePhoto.setOnClickListener {
+            takePhoto()
+            dialog.dismiss()
+        }
+        dialogBinding.btnGallery.setOnClickListener {
+            getImageFromGallery()
+            dialog.dismiss()
+        }
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.show()
+
+    }
+
+    fun getImageFromGallery() {
+       intentGalleryLauncher.launch("image/*")
     }
 
     private fun takePhoto() {
