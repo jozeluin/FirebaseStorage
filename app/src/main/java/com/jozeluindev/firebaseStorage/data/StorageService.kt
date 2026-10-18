@@ -1,9 +1,11 @@
 package com.jozeluindev.firebaseStorage.data
 
 import android.net.Uri
+import android.util.Log
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
+import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class StorageService @Inject constructor(private val storage: FirebaseStorage) {
@@ -23,8 +25,25 @@ class StorageService @Inject constructor(private val storage: FirebaseStorage) {
                 .child("test2.png")
     }
 
+    /**
+     * Subir una imagen
+     *
+     * @param uri
+     */
     fun uploadBasicImage(uri: Uri) {
         val reference = storage.reference.child(uri.lastPathSegment.orEmpty())
         reference.putFile(uri)
     }
+
+    suspend fun  dowloadBasicImage():Uri{
+     //   val reference=storage.reference.child("$userId/profile.png")
+        val reference=storage.reference.child("ejemplo/test1.png")
+
+        reference.downloadUrl.addOnSuccessListener { Log.i("jozeluin","sucess")}.addOnFailureListener {Log.i("jozeluin","fail")}
+
+        return reference.downloadUrl.await()
+
+
+    }
+
 }
