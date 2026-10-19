@@ -38,10 +38,10 @@ android {
     }
     buildFeatures {
         viewBinding = true
-        compose=true
+        compose = true
     }
-    composeOptions{
-        kotlinCompilerExtensionVersion="1.4.0"
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.0"
     }
 }
 
@@ -51,6 +51,8 @@ dependencies {
     implementation(libs.google.firebase.auth.ktx)
     implementation(libs.firebase.storage)
 
+    // Glide para pintar en xml🎨
+    implementation(libs.glide)
 
     // 🌟 Login & Terceros (Así traduce Gradle los alias largos con puntos en el código)
     implementation(libs.com.google.android.gms.play.services.auth)
@@ -74,13 +76,13 @@ dependencies {
     androidTestImplementation(libs.androidx.test.espresso.core)
 
     //Compose
-    implementation (platform(libs.androidx.compose.bom))
-    implementation (libs.androidx.compose.ui)
-    implementation (libs.androidx.compose.material)
-    implementation (libs.androidx.compose.runtime)
-    implementation (libs.androidx.compose.ui.graphics)
-    implementation (libs.androidx.compose.ui.tooling.preview)
-    implementation (libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.compose.ui.graphics)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.activity.compose)
     implementation(libs.coil.compose)
 
 }
