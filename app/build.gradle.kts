@@ -85,4 +85,7 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.coil.compose)
 
+    //Coil
+    implementation(libs.coil.compose)
+
 }
