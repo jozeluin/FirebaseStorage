@@ -70,27 +70,27 @@ class StorageService @Inject constructor(private val storage: FirebaseStorage) {
 
     }
 
-    private suspend fun readMetadata(){
-        val reference=storage.reference.child("download/metadataExample2349835371437161247.jpg")
+    private suspend fun readMetadata() {
+        val reference = storage.reference.child("download/metadataExample2349835371437161247.jpg")
         val response = reference.metadata.await()
-       val metaInfo= response.getCustomMetadata("jozeluin")
-        Log.i("jozeluin MetaInfo",metaInfo.orEmpty())
+        val metaInfo = response.getCustomMetadata("jozeluin")
+        Log.i("jozeluin MetaInfo", metaInfo.orEmpty())
     }
 
-    private suspend fun readMetadataAdvance(){
-        val reference=storage.reference.child("download/metadataExample2349835371437161247.jpg")
+    private suspend fun readMetadataAdvance() {
+        val reference = storage.reference.child("download/metadataExample2349835371437161247.jpg")
         val response = reference.metadata.await()
 
-        response.customMetadataKeys.forEach {key->
-           response.getCustomMetadata(key)?.let{value->
-               Log.i("jozeluin MetaInfo", "Para la key:$key el valor es: $value")
+        response.customMetadataKeys.forEach { key ->
+            response.getCustomMetadata(key)?.let { value ->
+                Log.i("jozeluin MetaInfo", "Para la key:$key el valor es: $value")
 
-           }
+            }
 
         }
     }
 
-    private  fun downloadImage(
+    private fun downloadImage(
         uploadTask: UploadTask.TaskSnapshot,
         cancellableContinuation: CancellableContinuation<Uri>
     ) {
@@ -99,28 +99,40 @@ class StorageService @Inject constructor(private val storage: FirebaseStorage) {
             .addOnFailureListener { cancellableContinuation.resumeWithException(it) }
     }
 
-    private fun removeImage(): Boolean{
-        val reference=storage.reference.child("download/metadataExample2349835371437161247.jpg")
+    private fun removeImage(): Boolean {
+        val reference = storage.reference.child("download/metadataExample2349835371437161247.jpg")
         return reference.delete().isSuccessful
     }
 
 
-    private fun createMetadata(): StorageMetadata{
-        val metadata= storageMetadata {
-            contentType="image/jpeg"
-            setCustomMetadata("user","jozeluin")
-            setCustomMetadata("jozeluin","Eterno aprendiz informatico")
+    private fun createMetadata(): StorageMetadata {
+        val metadata = storageMetadata {
+            contentType = "image/jpeg"
+            setCustomMetadata("user", "jozeluin")
+            setCustomMetadata("jozeluin", "Eterno aprendiz informatico")
         }
         return metadata
-        }
+    }
 
-    private fun uploadImageWithProgress(uri:Uri){
-        val reference=storage.reference.child("loquesea/miImagen.png")
-        reference.putFile(uri).addOnProgressListener {uploadTask->
-            val progress=(100.0 * uploadTask.bytesTransferred)/uploadTask.totalByteCount
-            Log.i("transfer",progress.toString())
+    private fun uploadImageWithProgress(uri: Uri) {
+        val reference = storage.reference.child("loquesea/miImagen.png")
+        reference.putFile(uri).addOnProgressListener { uploadTask ->
+            val progress = (100.0 * uploadTask.bytesTransferred) / uploadTask.totalByteCount
+            Log.i("transfer", progress.toString())
         }
     }
 
+    private suspend fun getAllImages():List<Uri>{
+        val reference = storage.reference.child("download/")
+//        reference.listAll().addOnSuccessListener { result ->
+//            result.items.forEach {
+//                Log.i("Todas las imagenes", it.name)
+//            }
+//        }
 
+        return reference.listAll().await().items.map { it.downloadUrl.await() }
+
+    }
 }
+
+
