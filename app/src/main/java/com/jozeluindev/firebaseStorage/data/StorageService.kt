@@ -114,5 +114,13 @@ class StorageService @Inject constructor(private val storage: FirebaseStorage) {
         return metadata
         }
 
+    private fun uploadImageWithProgress(uri:Uri){
+        val reference=storage.reference.child("loquesea/miImagen.png")
+        reference.putFile(uri).addOnProgressListener {uploadTask->
+            val progress=(100.0 * uploadTask.bytesTransferred)/uploadTask.totalByteCount
+            Log.i("transfer",progress.toString())
+        }
+    }
+
 
 }
