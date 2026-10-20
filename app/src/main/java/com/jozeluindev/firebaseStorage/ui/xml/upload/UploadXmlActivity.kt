@@ -42,6 +42,7 @@ class UploadXmlActivity : AppCompatActivity() {
         if (it && uri.path?.isNotEmpty() == true) //comprobar la uri
         {
             uploadViewModel.uploadAndGetImag(uri) { downloadUri ->
+                clearText()
                 showNewImage(downloadUri)
             }
         }
@@ -138,8 +139,15 @@ class UploadXmlActivity : AppCompatActivity() {
         )
     }
 
+    private fun clearText(){
+        binding.etTitle.setText("")
+        binding.etTitle.text.clear()
+    }
+
     private fun createFile(): File {
-        val name: String = SimpleDateFormat("yyyyMMdd_hhmmss").format(Date()) + "image"
+        val userTitle=binding.etTitle.text.toString()
+
+        val name: String = userTitle.ifEmpty{ SimpleDateFormat("yyyyMMdd_hhmmss").format(Date()) + "image" }
         return File.createTempFile(name, ".jpg", externalCacheDir)
     }
 }
