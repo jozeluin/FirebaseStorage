@@ -99,6 +99,11 @@ class StorageService @Inject constructor(private val storage: FirebaseStorage) {
             .addOnFailureListener { cancellableContinuation.resumeWithException(it) }
     }
 
+    private fun removeImage(): Boolean{
+        val reference=storage.reference.child("download/metadataExample2349835371437161247.jpg")
+        return reference.delete().isSuccessful
+    }
+
 
     private fun createMetadata(): StorageMetadata{
         val metadata= storageMetadata {
