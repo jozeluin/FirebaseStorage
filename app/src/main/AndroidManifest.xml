@@ -20,7 +20,6 @@
             android:name=".ui.compose.upload.UploadComposeActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -42,7 +41,10 @@
                 android:resource="@xml/path_provider" />
         </provider>
 
-
+        <activity
+            android:name=".ui.xml.list.ListXmlActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

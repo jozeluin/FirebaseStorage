@@ -29,18 +29,17 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="36dp"
-
+        android:backgroundTint="@color/white"
+        android:text="Navigate to Xml"
+        android:textColor="@color/yellow"
         app:layout_constraintBottom_toTopOf="@+id/btnNavigateCompose"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        android:text="Navigate to Xml"
-        android:textColor="@color/yellow"
         app:rippleColor="@color/yellow"
         app:strokeColor="@color/yellow"
         app:strokeWidth="2dp"
-        android:backgroundTint="@color/white"
 
         />
 

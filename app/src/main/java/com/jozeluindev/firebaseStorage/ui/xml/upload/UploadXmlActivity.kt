@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide
 import com.jozeluindev.firebaseStorage.R
 import com.jozeluindev.firebaseStorage.databinding.ActivityUploadXmlBinding
 import com.jozeluindev.firebaseStorage.databinding.DialogImageSelectorBinding
+import com.jozeluindev.firebaseStorage.ui.xml.list.ListXmlActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.io.File
@@ -99,6 +100,7 @@ class UploadXmlActivity : AppCompatActivity() {
 
     private fun initListeners() {
         binding.fabImage.setOnClickListener { showImageDialog() }
+        binding.btnNavigateToList.setOnClickListener { startActivity(ListXmlActivity.create(this)) }
     }
 
     fun showImageDialog() {

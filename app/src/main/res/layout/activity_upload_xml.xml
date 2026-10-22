@@ -64,11 +64,30 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/yellow"
         android:src="@drawable/ic_camera"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnNavigateToList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etTitle"
         app:tint="@color/white" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnNavigateToList"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="36dp"
+        android:backgroundTint="@color/white"
+        android:text="Navigate to List"
+        android:textColor="@color/yellow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fabImage"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:rippleColor="@color/yellow"
+        app:strokeColor="@color/yellow"
+        app:strokeWidth="2dp"
+
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
