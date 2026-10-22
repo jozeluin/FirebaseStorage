@@ -44,6 +44,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -57,6 +58,7 @@ import androidx.core.view.WindowInsetsCompat
 import coil.compose.AsyncImage
 import com.jozeluindev.firebaseStorage.R
 import com.jozeluindev.firebaseStorage.databinding.ActivityUploadComposeBinding
+import com.jozeluindev.firebaseStorage.ui.compose.list.ListComposeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.text.SimpleDateFormat
@@ -106,8 +108,8 @@ class UploadComposeActivity : AppCompatActivity() {
         val loading by uploadViewModel.isLoading.collectAsState()
         var userTitle: String by remember { mutableStateOf("") }
 
-        val focusRequester=remember { FocusRequester() }
-        val focusManager=LocalFocusManager.current
+        val focusRequester = remember { FocusRequester() }
+        val focusManager = LocalFocusManager.current
 
 
         val intentCameraLauncher = rememberLauncherForActivityResult(TakePicture()) {
@@ -259,6 +261,19 @@ class UploadComposeActivity : AppCompatActivity() {
                 }
             }
             Spacer(modifier = Modifier.weight(1f))
+            val context=LocalContext.current
+            OutlinedButton(
+                onClick = {startActivity(ListComposeActivity.create(context))},
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 36.dp)
+                    .align(CenterHorizontally),
+                border = BorderStroke(2.dp, colorResource(id = R.color.green)),
+                shape = RoundedCornerShape(42)
+            ) {
+                
+                Text("Navigate to List", color = colorResource(id = R.color.green))
+            }
 
         }
 
@@ -275,7 +290,8 @@ class UploadComposeActivity : AppCompatActivity() {
     }
 
     private fun createFile(userTitle: String): File {
-        val name: String = userTitle.ifEmpty{ SimpleDateFormat("yyyyMMdd_hhmmss").format(Date()) + "image" }
+        val name: String =
+            userTitle.ifEmpty { SimpleDateFormat("yyyyMMdd_hhmmss").format(Date()) + "image" }
         return File.createTempFile(name, ".jpg", externalCacheDir)
     }
 

@@ -45,6 +45,10 @@
             android:name=".ui.xml.list.ListXmlActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.compose.list.ListComposeActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
